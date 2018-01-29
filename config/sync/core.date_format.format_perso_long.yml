@@ -1,0 +1,8 @@
+uuid: 2f8b7245-4ceb-4797-b13c-6d70155c8d2d
+langcode: en
+status: true
+dependencies: {  }
+id: format_perso_long
+label: 'format perso long'
+locked: false
+pattern: '" l F Y \a\t H:i"'

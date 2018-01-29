@@ -1,0 +1,23 @@
+hello.hello:
+    route_name: hello.hello
+    base_route: hello.hello
+    title: 'hello'
+    weight: 1
+
+hello.hello2:
+    route_name: hello.hello2
+    base_route: hello.hello
+    title: 'hello2'
+    weight: 2
+
+hello.update_history:
+    route_name: hello.update_history
+    base_route: entity.node.canonical
+    title: Update history
+    weight: 0
+
+hello.calculatrice:
+    route_name: hello.calculatrice
+    base_route: hello.hello
+    title: 'calculatrice'
+    weight: 4

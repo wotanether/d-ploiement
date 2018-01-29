@@ -1,0 +1,28 @@
+{%
+	set classes =[
+		'layout',
+		'four-square',
+	]
+%}
+
+{% if content %}
+<div {{attributes.addClass(classes) }}>
+
+	<div class="layout__region layout__region__top">
+		{{ content.top }}
+	</div>
+
+	<div class="layout__region layout__region__left">
+		{{ content.left }}
+	</div>
+
+	<div class="layout__region layout__region__right">
+		{{ content.right }}
+	</div>
+
+	<div class="layout__region layout__region__bottom">
+		{{ content.bottom }}
+	</div>
+
+</div>
+{% endif %}

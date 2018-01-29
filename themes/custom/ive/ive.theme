@@ -1,0 +1,113 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the ive theme.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Template\Attribute;
+use Drupal\Component\Utility\Html;
+
+/**
+ * Implements hook_preprocess_HOOK() for HTML document templates.
+ *
+ * Adds body classes if certain regions have content.
+ */
+function ive_preprocess_html(&$variables) {
+
+  //Add body classes relative to page path
+  $path = \Drupal::service('path.current')->getPath();
+  $path_class = Html::cleanCssIdentifier($path);
+  //$path_class = str_replace('/','--',$path);
+  $path_class = substr($path_class,1);
+  $variables['attributes']['class'][] = $path_class;
+
+  // Add information about the number of sidebars.
+  if (!empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
+    $variables['attributes']['class'][] = 'layout-two-sidebars';
+  }
+  elseif (!empty($variables['page']['sidebar_first'])) {
+    $variables['attributes']['class'][] = 'layout-one-sidebar';
+    $variables['attributes']['class'][] = 'layout-sidebar-first';
+  }
+  elseif (!empty($variables['page']['sidebar_second'])) {
+    $variables['attributes']['class'][] = 'layout-one-sidebar';
+    $variables['attributes']['class'][] = 'layout-sidebar-second';
+  }
+  else {
+    $variables['attributes']['class'][] = 'layout-no-sidebars';
+  }
+
+  if (!empty($variables['page']['featured_top'])) {
+    $variables['attributes']['class'][] = 'has-featured-top';
+  }
+
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node.html.twig.
+ */
+function ive_preprocess_node(&$variables) {
+  // Remove the "Add new comment" link on teasers or when the comment form is
+  // displayed on the page.
+  if ($variables['teaser'] || !empty($variables['content']['comments']['comment_form'])) {
+    unset($variables['content']['links']['comment']['#links']['comment-add']);
+  }
+  $new_date = $variables['node']->getCreatedTime();
+  $variables['date'] = \Drupal::service('date.formatter')->format($new_date, 'format_perso_long');
+
+  if($variables['node']->bundle()=='article' && $variables['view_mode']=='full'){
+
+    $variables['#attached']['library'][] = 'ive/ive-tabs';
+  }
+
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block.html.twig.
+ */
+function ive_preprocess_block(&$variables) {
+  // Add a clearfix class to system branding blocks.
+  if ($variables['plugin_id'] == 'system_branding_block') {
+    $variables['attributes']['class'][] = 'clearfix';
+  }
+//Add base_path variable
+
+$variables['base_path'] = base_path();
+
+//Add theme_path variable
+
+  $theme_path = drupal_get_path('theme','ive');
+  $variables['theme_path'] = $theme_path;
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter for page templates.
+ */
+ function ive_theme_suggestions_page_alter(array &$suggestions, array $variables){
+  if($node = \Drupal::routeMatch()->getParameter('node')){
+   $type = $node->bundle();
+   $suggestions[] = 'page__node__' . $type;
+   $suggestions[] = 'page__node__' . $node->id();
+  }
+  if($taxonomy = \Drupal::routeMatch()->getParameter('taxonomy_term')){
+    $vocab = $taxonomy->bundle();
+    $suggestions[] = 'page__taxonomy__' . $vocab;
+    $suggestions[] = 'page__taxonomy__' . $taxonomy->id();
+  }
+ }
+
+
+/**
+ * Implements hook_preprocess_HOOK() for field.html.twig.
+ */
+function ive_preprocess_field(&$variables) {
+  //kint($variables);
+ /* if ($variables['element']['#view_mode']=='teaser' && $variables['field_name']=='field_photos_hotel' && $variables['multiple'] === TRUE){
+    $variables['multiple'] = FALSE;
+    $variables['items'];
+    kint($variables['items']['0']);
+  }*/
+
+}

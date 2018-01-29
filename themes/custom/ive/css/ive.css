@@ -1,0 +1,48 @@
+.site-branding__name a, .path-frontpage .node__title span, .sidebar h2{
+	font-size: 2rem;
+	color: orange !important;
+}
+
+header{
+	background: #fff;
+}
+
+.path-frontpage .node__title span{
+	font-family: impact;
+}
+
+.sidebar h2{
+	border-bottom: 1px solid orange;
+}
+
+.content .menu-item a{
+	color:orange;
+}
+.content .menu-item a.is-active{
+	background:orange !important;
+	color:#fff;
+}
+
+
+.region_perso{
+	background-color: orange;
+	color: #fff;
+	padding: 20px;
+}
+
+#div_gauche, #div_droite{
+	float:left;
+	width:50%;
+}
+
+.span_rouge{
+	color:red;
+}
+
+.node .external_link:before{
+	content:'';
+	display:inline-block;
+	width: 16px;
+	height: 16px;
+	background: url('../images/external-link.gif');
+}

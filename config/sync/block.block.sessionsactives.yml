@@ -1,0 +1,22 @@
+uuid: 6a63f089-6fbf-4aa5-a37a-9ec02591aeb3
+langcode: en
+status: true
+dependencies:
+  module:
+    - hello
+  theme:
+    - ive
+_core:
+  default_config_hash: e3l9NFg6N_VmceZ5sU_oZy9RjfH9_ZXgVnolu1kB-ek
+id: sessionsactives
+theme: ive
+region: sidebar_second
+weight: -7
+provider: null
+plugin: Sessions_actives
+settings:
+  id: Sessions_actives
+  label: 'Sessions actives'
+  provider: hello
+  label_display: visible
+visibility: {  }

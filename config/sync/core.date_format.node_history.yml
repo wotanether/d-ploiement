@@ -1,0 +1,8 @@
+uuid: a79e702d-13f5-4a0e-88a0-3a628c6c216c
+langcode: en
+status: true
+dependencies: {  }
+id: node_history
+label: 'node history'
+locked: false
+pattern: 'D j/m'

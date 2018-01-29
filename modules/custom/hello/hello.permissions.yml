@@ -1,0 +1,7 @@
+block session access:
+  title: 'block session permission'
+  description: 'the block session permission'
+
+administer hello:
+  title: 'administer hello'
+  description: 'the permission for the block color page'

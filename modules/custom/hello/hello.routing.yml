@@ -1,0 +1,97 @@
+hello.hello:
+  path: '/hello/{param}'
+  defaults:
+    _title: 'hello'
+    route_name: hello.hello
+    _controller: '\Drupal\hello\Controller\HelloController::content'
+    param: NULL
+  requirements:
+    _access_hello: '48'
+
+
+hello.hello-json:
+  path: '/hello-json'
+  defaults:
+    _title: 'hello-json'
+    _controller: '\Drupal\hello\Controller\HelloController::jsonPage'
+  requirements:
+    _access: 'TRUE'
+
+
+hello.hello2:
+  path: '/hello2/{nodetype}'
+  defaults:
+    _title: 'hello2'
+    route_name: hello.hello2
+    _controller: '\Drupal\hello\Controller\HelloOngletsController::content'
+    nodetype: NULL
+  requirements:
+    _access: 'TRUE'
+
+hello.update_history:
+  path: '/node/{node}/history'
+  defaults:
+    _title: 'Update history'
+    _controller: '\Drupal\hello\Controller\HelloNodeHistoryController::content'
+  requirements:
+    _access: 'TRUE'
+
+
+hello.calculatrice:
+  path: '/calculatrice'
+  defaults:
+    _title: 'Calculatrice'
+    _form: '\Drupal\hello\Form\CalculatriceForm'
+  requirements:
+    _access: 'TRUE'
+
+hello.calculatrice.page:
+  path: '/calculatrice-page/{result}'
+  defaults:
+    _title: 'Calculatrice page'
+    _controller: '\Drupal\hello\Controller\HelloCalculatriceController::content'
+  requirements:
+    _access: 'TRUE'
+
+hello.color.config:
+  path: 'admin/appearance/block-color'
+  defaults:
+    _title: 'Block color'
+    route_name: hello.color.config
+    _form: '\Drupal\hello\Form\HelloColorConfigForm'
+  requirements:
+    _permission: 'administer hello'
+
+hello.chat:
+  path: '/chat-socket'
+  defaults:
+    _title: 'Chat socket'
+    _controller: '\Drupal\hello\Controller\HelloChatSocketController::server'
+  requirements:
+    _access: 'TRUE'
+
+
+hello.pays:
+  path: '/country/{continent}'
+  defaults:
+    _title: 'Countries list'
+    _controller: '\Drupal\hello\Controller\HelloCountryController::content'
+    continent: 'Europe'
+  requirements:
+    _access: 'TRUE'
+hello.console_test_controller_hello:
+  path: 'console-test'
+  defaults:
+    _controller: '\Drupal\hello\Controller\ConsoleTestController::hello'
+    _title: 'content'
+  requirements:
+    _permission: 'access content'
+
+hello.console_test_form:
+  path: '/hello/form/console_test'
+  defaults:
+    _form: '\Drupal\hello\Form\ConsoleTestForm'
+    _title: 'ConsoleTestForm'
+  requirements:
+    _access: 'TRUE'
+  

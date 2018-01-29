@@ -1,0 +1,14 @@
+uuid: d6836a90-1acd-4973-90fe-0e72b30cb4c4
+name: 'Theming D8'
+mail: guillaume.pauli99+poei@gmail.com
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en
+_core:
+  default_config_hash: yXadRE77Va-G6dxhd2kPYapAvbnSvTF6hO4oXiOEynI

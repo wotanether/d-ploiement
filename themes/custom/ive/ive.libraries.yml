@@ -1,0 +1,27 @@
+ive:
+  version: VERSION
+  js:
+      js/ive.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+  css:
+    theme:
+      css/wysiwyg.css: {}
+      css/ive.css: {}
+
+four-square:
+  version: VERSION
+  css:
+    theme:
+      layouts/four-square/four-square.css: {}
+
+ive-tabs:
+  version: VERSION
+  js:
+      js/ive-tabs.js: {}
+  dependencies:
+    - core/jquery.ui.tabs
+    - core/drupal
+    - core/drupalSettings

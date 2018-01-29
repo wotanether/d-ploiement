@@ -1,0 +1,12 @@
+hello.page:
+  title: 'hello'
+  route_name: 'hello.hello'
+  description: 'hello page'
+  menu_name: main
+
+hello.color.config:
+  title: 'Block color'
+  route_name: 'hello.color.config'
+  description: 'block color configuration'
+  menu_name: admin
+  parent: system.themes_page

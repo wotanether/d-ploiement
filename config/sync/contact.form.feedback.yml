@@ -1,0 +1,14 @@
+uuid: 910844a3-0473-4c2f-b3f6-d1c73f03d015
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: vymHlgJy26BuI5GGj9-IXjwR3dRC5C0tij4BpWJnoqw
+id: feedback
+label: 'Website feedback'
+recipients:
+  - guillaume.pauli99+poei@gmail.com
+reply: ''
+weight: 0
+message: 'Your message has been sent.'
+redirect: ''

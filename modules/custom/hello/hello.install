@@ -1,0 +1,55 @@
+<?php
+/**
+ * @file
+ * Install, update and uninstall functions for the hello module.
+ */
+
+use \Drupal\Core\Database\Database;
+
+/**
+*implements hook_shema().
+*/
+
+function hello_schema(){
+	$schema['hello_node_history'] = [
+		'description' => 'History of nodes.',
+	    'fields' => [
+	      'hid' => [
+	        'description' => 'Primary Key: unique id.',
+	        'type' => 'serial',
+	        'unsigned' => TRUE,
+	        'not null' => TRUE,
+	      	],
+	      'nid' => [
+	        'description' => 'Id of the node.',
+	        'type' => 'int',
+	        'unsigned' => TRUE,
+	        'not null' => TRUE,
+	      	],
+	      	'uid' => [
+	        'description' => 'Id of user.',
+	        'type' => 'int',
+	        'not null' => TRUE,
+	      	],
+	      'update_time' => [
+	        'description' => 'Timestamp of the update.',
+	        'type' => 'int',
+	        'not null' => TRUE,
+	      	],
+	      ],
+	    'primary key' => ['hid'],
+    ];
+    return $schema;
+}
+
+/**
+* add a uid field to hello_node_history table
+*/
+function hello_update_8401(){
+	$schema = Database::getConnection()->schema();
+	$schema->addField('hello_node_history','uid',
+			['description' => 'Id of user.',
+	        'type' => 'int',
+	        'not null' => TRUE,
+	      	]);
+}

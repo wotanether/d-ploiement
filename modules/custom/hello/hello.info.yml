@@ -1,0 +1,8 @@
+name: Hello
+description: Super module qui fait des trucs de fou.
+package: Administration
+type: module
+core: 8.x
+dependencies:
+# Information added by Drupal.org packaging script on 2017-11-20
+version: 8.x-1.0

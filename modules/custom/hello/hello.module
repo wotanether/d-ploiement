@@ -1,0 +1,96 @@
+<?php
+
+use Drupal\block\Entity\Block;
+use Drupal\Core\Form\FormStateInterface;
+
+
+function hello_page_attachments(array &$page){
+	$page['#attached']['library'][] = 'hello/hello';
+
+}
+
+function hello_cron(){
+	drupal_set_message(t('Bienvenue'), 'status');
+	
+}
+
+function hello_user_login($account){
+	//pour empêcher la redirection de kint il faut faire un die
+	//kint($account);
+	//die;
+
+	$user = $account->getAccountName();
+	drupal_set_message(t('Bienvenue cher ').$user.' !', 'status');//status est inutile ,c'est la valeur par defaultstatus,warning, error)
+	\Drupal\Core\Cache\Cache::invalidateTags(array('session'));
+}
+
+function hello_user_logout($account){
+	\Drupal\Core\Cache\Cache::invalidateTags(array('session'));
+}
+
+/**
+*implements hook_node_update().
+*/
+
+function hello_node_update($node){
+	$uid = $node->getCurrentUserId();
+	$nid = $node->id();
+	$time = $node->getChangedTime();
+	$query = \Drupal::database()->insert('hello_node_history')
+  			->fields([
+  				'nid' => $nid,
+  				'uid' => $uid[0],
+			    'update_time' => $time,  
+  			])
+  			->execute();
+
+}
+
+function hello_node_delete($node){
+	$nid = $node->id();
+	$query = \Drupal::database()->delete('hello_node_history')
+			->condition('nid',$nid,'=')
+			->execute();
+}
+
+
+/**
+*implements hook_preprocess_block().
+*/
+
+function hello_preprocess_block(&$variables){
+
+	$block = Block::load($variables['elements']['#id']);
+  	$region = $block->getRegion();
+	
+	$color = \drupal::config('hello.config')->get('color');
+	
+	if($region == 'sidebar_first'){
+		$variables['attributes']['class'][] = $color;
+	}
+}
+
+function hello_theme($existing, $type, $theme, $path){
+	return array(
+		'hello_node_history' => array(
+			'template' => 'hello-node-history',
+			'variables'=> array('node' => NULL, 'count'=> NULL),
+			),
+		);
+
+}
+
+function hello_form_contact_message_feedback_form_alter(array &$form, FormStateInterface $formState, $form_id){
+	//if ($form_id =='contact_message_feedback_form'){
+		$form['phone_number'] = array(
+				'#type'=>'tel',
+				'#title'=>t('telephone'),
+				'#required'=> TRUE,
+			);
+	$form['actions']['submit']['#value'] = t('SEND NOW!');
+
+	unset($form['#process']);
+
+	$form['subject']['#access'] = FALSE;
+	//}
+}

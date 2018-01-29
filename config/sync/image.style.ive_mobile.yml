@@ -1,0 +1,20 @@
+uuid: 87089a1a-4c36-4c78-84ae-9cd8c0b97ae5
+langcode: en
+status: true
+dependencies: {  }
+name: ive_mobile
+label: 'ive mobile'
+effects:
+  0480da8b-170b-4329-9bc3-69798dbd8794:
+    uuid: 0480da8b-170b-4329-9bc3-69798dbd8794
+    id: image_scale
+    weight: 1
+    data:
+      width: 180
+      height: null
+      upscale: false
+  a82a5e98-fb11-4027-8377-85f2bac41cb9:
+    uuid: a82a5e98-fb11-4027-8377-85f2bac41cb9
+    id: image_desaturate
+    weight: 2
+    data: {  }
