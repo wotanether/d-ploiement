@@ -250,7 +250,7 @@ $databases = array();
  * @endcode
  */
 $config_directories = array(
-	CONFIG_SYNC_DIRECTORY => '../config/sync',
+	CONFIG_SYNC_DIRECTORY => 'config/sync',
 );
 $config['config_split.config_split.dev']['status'] = TRUE;
 $config['system.site']['name'] = 'Guillaume '. date('l \t\h\e jS',time());
